@@ -1,0 +1,23 @@
+{
+  "name": "stdts",
+  "version": "0.0.1",
+  "description": "A standard library for Typescript.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jakemccloskey/stdts.git"
+  },
+  "main": "index.js",
+  "config": {
+    "main_dir": "./target/",
+    "main": "main.js"
+  },
+  "scripts": {
+    "start": "./bin/start"
+  },
+  "devDependencies": {
+    "@types/node": "4.0.22-alpha",
+    "typescript": "next"
+  },
+  "author": "Jake McCloskey <jakemccloskey@gmail.com>",
+  "license": "MIT"
+}
