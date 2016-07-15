@@ -13,7 +13,7 @@ function* objectEntries(obj: InputObject): IterableIterator<[string, JsonValue]>
     }
 }
 
-interface JsonValueBase extends Empty {}
+export interface JsonValueBase extends Empty {}
 
 export interface JsonNull extends JsonValueBase {
     readonly kind: 'null';

@@ -1,0 +1,59 @@
+#!/bin/bash
+
+set -e
+
+src_dir() {
+    echo "$npm_package_config_src_dir"
+}
+
+target_dir() {
+    echo "$npm_package_config_target_dir"
+}
+
+target_main_dir() {
+    echo "$(target_dir)${npm_package_config_main_dir}"
+}
+
+target_test_dir() {
+    echo "$(target_dir)${npm_package_config_test_dir}"
+}
+
+target_main_file() {
+    echo "$(target_main_dir)${npm_package_config_main_file}"
+}
+
+target_test_file() {
+    echo "$(target_test_dir)${npm_package_config_test_file}"
+}
+
+tsconfig() {
+    echo $(src_dir)tsconfig.json
+}
+
+tsconfig_test() {
+    echo $(src_dir)tsconfig.test.json
+}
+
+tsc_args() {
+    # TODO: Get outDir from package.json
+    echo --inlineSourceMap --inlineSources --sourceRoot $(src_dir)
+}
+
+clean() {
+    rm -rf $(target_dir)
+}
+
+build() {
+    clean
+    $(npm bin)/tsc -p $(tsconfig) $(tsc_args)
+}
+
+test() {
+    clean
+    rm -rf ./coverage
+    $(npm bin)/tsc -p $(tsconfig_test) $(tsc_args)
+    $(npm bin)/istanbul cover --root $(target_main_dir) --include-all-sources $(npm bin)/tape -- $(target_test_file)
+    $(npm bin)/remap-istanbul -i ./coverage/coverage.json -o ./coverage/coverage-final -t html
+}
+
+"$@"

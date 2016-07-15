@@ -1,7 +1,7 @@
 import Empty from './empty';
 import {Option, Some, None} from './option';
 
-interface ResultBase<T, E> extends Empty {
+export interface ResultBase<T, E> extends Empty {
     unwrapErr(msg?: string): E;
     unwrap(msg?: string): T;
     isOk(): this is Ok<T, E>;

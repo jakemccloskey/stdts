@@ -1,4 +1,6 @@
-FROM node:6.2.2-slim
+FROM alpine:3.4
+
+RUN apk add --no-cache nodejs bash
 
 ENV APP_DIR "/opt/app"
 ENV TMP_DIR "/var${APP_DIR}"
@@ -8,4 +10,4 @@ WORKDIR "$APP_DIR"
 
 ENV NODE_ENV "development"
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "test"]

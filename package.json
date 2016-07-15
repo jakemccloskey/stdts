@@ -6,17 +6,26 @@
     "type": "git",
     "url": "https://github.com/jakemccloskey/stdts.git"
   },
-  "main": "index.js",
+  "main": "dist/index.js",
   "config": {
-    "main_dir": "./target/",
-    "main": "main.js"
+    "src_dir": "./src/",
+    "target_dir": "./dist/",
+    "main_dir": "main/",
+    "test_dir": "test/",
+    "test_file": "**/*.js"
   },
   "scripts": {
-    "start": "./bin/start"
+    "test": "./bin/main test",
+    "build": "./bin/main build"
   },
   "devDependencies": {
     "@types/node": "4.0.22-alpha",
-    "typescript": "next"
+    "typescript": "next",
+    "tslint": "next",
+    "tape": "4.6.0",
+    "@types/tape": "4.2.25-alpha",
+    "istanbul": "0.4.4",
+    "remap-istanbul": "0.6.4"
   },
   "author": "Jake McCloskey <jakemccloskey@gmail.com>",
   "license": "MIT"

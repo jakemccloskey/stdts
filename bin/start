@@ -1,7 +1,0 @@
-#!/bin/bash
-
-set -e
-
-rm -rf "$npm_package_config_main_dir" && \
-$(npm bin)/tsc && \
-node "${npm_package_config_main_dir}${npm_package_config_main}"

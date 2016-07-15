@@ -1,10 +1,10 @@
 version: "2"
 services:
-  web:
+  main:
     stdin_open: true
     tty: true
     build:
       context: "."
-      dockerfile: "dev.Dockerfile"
+      dockerfile: "Dockerfile"
     volumes:
       - ".:/opt/app"

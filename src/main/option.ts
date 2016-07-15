@@ -1,7 +1,7 @@
 import Empty from './empty';
 import {Result, Ok, Err} from './result';
 
-interface OptionBase<T> extends Empty {
+export interface OptionBase<T> extends Empty {
     isSome(): this is Some<T>;
     isNone(): this is None<T>;
     unwrap(msg?: string): T;
@@ -19,7 +19,7 @@ interface OptionBase<T> extends Empty {
     [Symbol.iterator](): IterableIterator<T>;
 }
 
-interface None<T> extends OptionBase<T> {
+export interface None<T> extends OptionBase<T> {
     readonly kind: 'none';
 }
 
@@ -93,7 +93,7 @@ export function None<T>(): None<T> {
     return new NoneImpl<T>();
 }
 
-interface Some<T> extends OptionBase<T> {
+export interface Some<T> extends OptionBase<T> {
     readonly kind: 'some';
     readonly value: T;
 }
