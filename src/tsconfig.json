@@ -10,7 +10,7 @@
         "pretty": true,
         "strictNullChecks": true,
         "outDir": "../dist",
-        "allowJs": true,
+        "declaration": true,
         "lib": [
             "es2015"
         ]

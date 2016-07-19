@@ -1,7 +1,6 @@
-import Empty from './empty';
 import {Option, Some, None} from './option';
 
-export interface ResultBase<T, E> extends Empty {
+export interface ResultBase<T, E> {
     unwrapErr(msg?: string): E;
     unwrap(msg?: string): T;
     isOk(): this is Ok<T, E>;
@@ -26,12 +25,11 @@ export interface Err<T, E> extends ResultBase<T, E> {
 
 function* errIterator<T>(): IterableIterator<T> {}
 
-class ErrImpl<T, E> extends Empty implements Err<T, E> {
+class ErrImpl<T, E> implements Err<T, E> {
     public readonly kind: 'err' = 'err';
     public readonly value: E;
 
     constructor(value: E) {
-        super();
         this.value = value;
     }
 
@@ -109,12 +107,11 @@ function* okIterator<T>(v: T): IterableIterator<T> {
     yield v;
 }
 
-class OkImpl<T, E> extends Empty implements Ok<T, E> {
+class OkImpl<T, E> implements Ok<T, E> {
     public readonly kind: 'ok' = 'ok';
     public readonly value: T;
 
     constructor(value: T) {
-        super();
         this.value = value;
     }
 

@@ -1,4 +1,3 @@
-import Empty from './empty';
 import {Option, Some, None} from './option';
 import {HashMap} from './collections/hash_map';
 import {isString, isNull, isNumber, isBoolean, isArray, isObject} from './types';
@@ -13,14 +12,14 @@ function* objectEntries(obj: InputObject): IterableIterator<[string, JsonValue]>
     }
 }
 
-export interface JsonValueBase extends Empty {}
+export interface JsonValueBase {}
 
 export interface JsonNull extends JsonValueBase {
     readonly kind: 'null';
     readonly value: null;
 }
 
-class JsonNullImpl extends Empty implements JsonNull {
+class JsonNullImpl implements JsonNull {
     public readonly kind: 'null' = 'null';
     public readonly value: null = null;
 }
@@ -34,12 +33,11 @@ export interface JsonString extends JsonValueBase {
     readonly value: string;
 }
 
-class JsonStringImpl extends Empty implements JsonString {
+class JsonStringImpl implements JsonString {
     public readonly kind: 'string' = 'string';
     public readonly value: string;
 
     constructor(value: string) {
-        super();
         this.value = value;
     }
 }
@@ -53,12 +51,11 @@ export interface JsonNumber extends JsonValueBase {
     readonly value: number;
 }
 
-class JsonNumberImpl extends Empty implements JsonNumber {
+class JsonNumberImpl implements JsonNumber {
     public readonly kind: 'number' = 'number';
     public readonly value: number;
 
     constructor(value: number) {
-        super();
         this.value = value;
     }
 }
@@ -72,12 +69,11 @@ export interface JsonBoolean extends JsonValueBase {
     readonly value: boolean;
 }
 
-class JsonBooleanImpl extends Empty implements JsonBoolean {
+class JsonBooleanImpl implements JsonBoolean {
     public readonly kind: 'boolean' = 'boolean';
     public readonly value: boolean;
 
     constructor(value: boolean) {
-        super();
         this.value = value;
     }
 }
@@ -91,12 +87,11 @@ export interface JsonObject extends JsonValueBase {
     readonly value: HashMap<string, JsonValue>;
 }
 
-class JsonObjectImpl extends Empty implements JsonObject {
+class JsonObjectImpl implements JsonObject {
     public readonly kind: 'object' = 'object';
     public readonly value: HashMap<string, JsonValue>;
 
     constructor(value: HashMap<string, JsonValue>) {
-        super();
         this.value = value;
     }
 }
@@ -116,12 +111,11 @@ export interface JsonArray extends JsonValueBase {
     readonly value: HashMap<number, JsonValue>;
 }
 
-class JsonArrayImpl extends Empty implements JsonArray {
+class JsonArrayImpl implements JsonArray {
     public readonly kind: 'array' = 'array';
     public readonly value: HashMap<number, JsonValue>;
 
     constructor(value: HashMap<number, JsonValue>) {
-        super();
         this.value = value;
     }
 }

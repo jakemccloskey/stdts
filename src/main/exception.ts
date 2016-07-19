@@ -1,7 +1,6 @@
-import Empty from './empty';
 import {Option, Some, None} from './option';
 
-export abstract class Exception extends Empty {
+export abstract class Exception {
     public abstract description(): string;
 
     public cause(): Option<Exception> {

@@ -46,6 +46,7 @@ clean() {
 build() {
     clean
     $(npm bin)/tsc -p $(tsconfig) $(tsc_args)
+    cp package.json ./dist/package.json
 }
 
 test() {

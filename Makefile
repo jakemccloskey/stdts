@@ -33,6 +33,10 @@ test: ## Run unit tests.
 build: ## Build the prod bundle.
 	@$(DOCKER_RUN) npm run build
 
+publish: ## Publish project to npm registry
+	@make build
+	@npm publish ./dist
+
 # Don't do anything.
 %:
 	@:

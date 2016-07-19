@@ -1,5 +1,3 @@
-import Empty from './empty';
-
 export function isString(value: any): value is string {
     return typeof value === 'string';
 }
@@ -24,6 +22,6 @@ export function isArray(value: any): value is Array<any> {
     return Array.isArray(value);
 }
 
-export function isObject(value: any): value is Empty {
+export function isObject(value: any): value is Object {
     return !isNull(value) && typeof value === 'object';
 }

@@ -1,7 +1,6 @@
-import Empty from '../empty';
 import {Option, Some, None} from '../option';
 
-export interface HashMap<K, V> extends Empty {
+export interface HashMap<K, V> {
     keys(): IterableIterator<K>;
     values(): IterableIterator<V>;
     len(): number;
@@ -25,12 +24,10 @@ function* drainIterator<K, V>(hashMap: HashMapImpl<K, V>): IterableIterator<[K, 
     }
 }
 
-class HashMapImpl<K, V> extends Empty implements HashMap<K, V> {
+class HashMapImpl<K, V> implements HashMap<K, V> {
     private inner: Map<K, V> = new Map<K, V>();
 
     constructor(iterator?: IterableIterator<[K, V]>) {
-        super();
-
         if (iterator !== undefined) {
             this.inner = new Map<K, V>(iterator);
         }

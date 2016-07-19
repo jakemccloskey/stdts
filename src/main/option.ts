@@ -1,7 +1,6 @@
-import Empty from './empty';
 import {Result, Ok, Err} from './result';
 
-export interface OptionBase<T> extends Empty {
+export interface OptionBase<T> {
     isSome(): this is Some<T>;
     isNone(): this is None<T>;
     unwrap(msg?: string): T;
@@ -25,7 +24,7 @@ export interface None<T> extends OptionBase<T> {
 
 function* noneIterator<T>(): IterableIterator<T> {}
 
-class NoneImpl<T> extends Empty implements None<T>  {
+class NoneImpl<T> implements None<T>  {
     public readonly kind: 'none' = 'none';
 
     public isSome(): this is Some<T> {
@@ -102,12 +101,11 @@ function* someIterator<T>(v: T): IterableIterator<T> {
     yield v;
 }
 
-class SomeImpl<T> extends Empty implements Some<T> {
+class SomeImpl<T> implements Some<T> {
     public readonly kind: 'some' = 'some';
     public readonly value: T;
 
     constructor(value: T) {
-        super();
         this.value = value;
     }
 
