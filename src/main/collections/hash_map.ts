@@ -27,9 +27,9 @@ function* drainIterator<K, V>(hashMap: HashMapImpl<K, V>): IterableIterator<[K, 
 class HashMapImpl<K, V> implements HashMap<K, V> {
     private inner: Map<K, V> = new Map<K, V>();
 
-    constructor(iterator?: IterableIterator<[K, V]>) {
-        if (iterator !== undefined) {
-            this.inner = new Map<K, V>(iterator);
+    constructor(iterable?: Array<[K, V]> | Iterable<[K, V]>) {
+        if (iterable !== undefined) {
+            this.inner = new Map<K, V>(iterable);
         }
     }
 
@@ -93,6 +93,9 @@ class HashMapImpl<K, V> implements HashMap<K, V> {
 
 }
 
-export function HashMap<K, V>(iterator?: IterableIterator<[K, V]>): HashMap<K, V> {
-    return new HashMapImpl<K, V>(iterator);
+export function HashMap<K, V>(): HashMap<K, V>;
+export function HashMap<K, V>(iterable: Array<[K, V]>): HashMap<K, V>;
+export function HashMap<K, V>(iterable: Iterable<[K, V]>): HashMap<K, V>;
+export function HashMap<K, V>(iterable?: Array<[K, V]> | Iterable<[K, V]>): HashMap<K, V> {
+    return new HashMapImpl<K, V>(iterable);
 }
