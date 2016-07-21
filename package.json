@@ -8,7 +8,8 @@
   },
   "config": {
     "src_dir": "./src/",
-    "target_dir": "./dist/",
+    "dist_dir": "./dist/",
+    "dist_test_dir": "./dist-test/",
     "main_dir": "main/",
     "test_dir": "test/",
     "test_file": "**/*.js"
@@ -18,11 +19,11 @@
     "build": "./bin/main build"
   },
   "devDependencies": {
-    "@types/node": "4.0.22-alpha",
-    "typescript": "next",
+    "@types/node": "4.0.30",
+    "@types/tape": "4.2.27",
+    "typescript": "beta",
     "tslint": "next",
     "tape": "4.6.0",
-    "@types/tape": "4.2.25-alpha",
     "istanbul": "0.4.4",
     "remap-istanbul": "0.6.4"
   },

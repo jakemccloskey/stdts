@@ -1,0 +1,31 @@
+{
+  "extends": "tslint:latest",
+  "rules": {
+    "max-line-length": [true, 140],
+    "no-null-keyword": true,
+    "no-reference": true,
+    "no-trailing-whitespace": true,
+    "curly": true,
+    "eofline": true,
+    "new-parens": true,
+    "no-conditional-assignment": true,
+    "no-construct": true,
+    "no-debugger": true,
+    "no-duplicate-variable": true,
+    "no-unused-expression": true,
+    "no-use-before-declare": true,
+    "no-var-keyword": true,
+    "quotemark": [true, "single"],
+    "use-isnan": true,
+    "interface-name": [false],
+    "no-any": true,
+    "semicolon": [true, "always"],
+    "trailing-comma": [true, {"multiline": "never", "singleline": "never"}],
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "no-shadowed-variable": false,
+    "no-var-requires": false,
+    "variable-name": [true, "check-format", "allow-leading-underscore"],
+    "no-namespace": false
+  }
+}

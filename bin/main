@@ -6,24 +6,28 @@ src_dir() {
     echo "$npm_package_config_src_dir"
 }
 
-target_dir() {
-    echo "$npm_package_config_target_dir"
+dist_dir() {
+    echo "$npm_package_config_dist_dir"
 }
 
-target_main_dir() {
-    echo "$(target_dir)${npm_package_config_main_dir}"
+dist_test_dir() {
+    echo "$npm_package_config_dist_test_dir"
 }
 
-target_test_dir() {
-    echo "$(target_dir)${npm_package_config_test_dir}"
+main_dir() {
+    echo "${npm_package_config_main_dir}"
 }
 
-target_main_file() {
-    echo "$(target_main_dir)${npm_package_config_main_file}"
+test_dir() {
+    echo "${npm_package_config_test_dir}"
 }
 
-target_test_file() {
-    echo "$(target_test_dir)${npm_package_config_test_file}"
+main_file() {
+    echo "${npm_package_config_main_file}"
+}
+
+test_file() {
+    echo "${npm_package_config_test_file}"
 }
 
 tsconfig() {
@@ -40,20 +44,20 @@ tsc_args() {
 }
 
 clean() {
-    rm -rf $(target_dir)
+    rm -rf $(dist_dir)
 }
 
 build() {
     clean
     $(npm bin)/tsc -p $(tsconfig) $(tsc_args)
-    cp package.json ./dist/package.json
+    cp package.json "$(dist_dir)package.json"
 }
 
 test() {
     clean
     rm -rf ./coverage
     $(npm bin)/tsc -p $(tsconfig_test) $(tsc_args)
-    $(npm bin)/istanbul cover --root $(target_main_dir) --include-all-sources $(npm bin)/tape -- $(target_test_file)
+    $(npm bin)/istanbul cover --root "$(dist_test_dir)$(main_dir)" --include-all-sources $(npm bin)/tape -- "$(dist_test_dir)$(test_file)"
     $(npm bin)/remap-istanbul -i ./coverage/coverage.json -o ./coverage/coverage-final -t html
 }
 

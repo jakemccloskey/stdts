@@ -1,8 +1,8 @@
-import {Option, Some, None} from '../main/option'
-import {Result, Ok, Err} from '../main/result';
-import {JsonValue, JsonNull, JsonString, JsonNumber, JsonBoolean, JsonObject, JsonArray} from '../main/json';
-import {Exception} from '../main/exception';
-import * as test from 'tape';
+// import {Option, Some, None} from '../main/option'
+// import {Result, Ok, Err} from '../main/result';
+// import {JsonValue, JsonNull, JsonString, JsonNumber, JsonBoolean, JsonObject, JsonArray} from '../main/json';
+// import {Exception} from '../main/exception';
+// import * as test from 'tape';
 
 // const je = JsonValue.parse('');
 // assert.deepStrictEqual(je, None(), `JsonValue.parse('')`);
