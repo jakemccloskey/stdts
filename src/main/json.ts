@@ -153,7 +153,7 @@ export namespace JsonValue {
                 }
 
                 if (Array.isArray(value)) {
-                    return JsonArray(value.entries());
+                    return JsonArray(...value.entries());
                 }
 
                 if (isObject(value)) {
