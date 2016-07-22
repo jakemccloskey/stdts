@@ -12,7 +12,7 @@ function* objectEntries(obj: InputObject): IterableIterator<[string, JsonValue]>
     }
 }
 
-export interface JsonValueBase {}
+export interface JsonValueBase { }
 
 export interface JsonNull extends JsonValueBase {
     readonly kind: 'null';
@@ -152,15 +152,15 @@ export namespace JsonValue {
                     return JsonBoolean(value);
                 }
 
-                if (Array.isArray(value)) {
-                    return JsonArray(value.entries());
+                if (isArray(value)) {
+                    return JsonArray(...value);
                 }
 
                 if (isObject(value)) {
                     return JsonObject(...objectEntries(value));
                 }
 
-                return value;
+                return None();
             }));
         } catch (err) {
             return None<JsonValue>();
@@ -172,7 +172,7 @@ export namespace JsonValue {
             if (val.kind === 'array') {
                 const result: Array<any> = [];
 
-                for (const [i, child] of val.value) {
+                for (const child of val.value.values()) {
                     result.push(helper(child));
                 }
 
@@ -195,84 +195,3 @@ export namespace JsonValue {
         return JSON.stringify(helper(json), null, spacing);
     }
 }
-
-
-// export interface JsonObject extends HashMap<string, JsonValue> {}
-// export interface JsonArray extends HashMap<number, JsonValue> {}
-
-// const jsonObjectBrand = Symbol();
-// const jsonArrayBrand = Symbol();
-
-// export function JsonObject(entries: Array<[string, JsonValue]>): JsonObject {
-//     const result = new OptionMap(entries) as any;
-//     result[jsonObjectBrand] = true;
-
-//     return result;
-// }
-
-// export function JsonArray(entries: Array<[number, JsonValue]>): JsonObject {
-//     const result = new OptionMap(entries) as any;
-//     result[jsonArrayBrand] = true;
-
-//     return result;
-// }
-
-// export function jsonParse(json: string): Option<JsonValue> {
-//     try {
-//         return Some(JSON.parse(json, (key, value) => {
-//             if (Array.isArray(value)) {
-//                 const result = new OptionMap(value.entries()) as any;
-//                 result[jsonArrayBrand] = true;
-
-//                 return result as JsonArray;
-//             }
-
-//             if (typeof value === 'object' && value !== null) {
-//                 const result = new OptionMap(objectEntries<JsonValue>(value)) as any;
-//                 result[jsonObjectBrand] = true;
-
-//                 return result as JsonObject;
-//             }
-
-//             return value;
-//         }));
-//     } catch (err) {
-//         return None<JsonValue>();
-//     }
-// }
-
-// function toPojo(json: JsonValue): any {
-//     if (isJsonArray(json)) {
-//         const result: Array<any> = [];
-
-//         for (const value of json.values()) {
-//             result.push(toPojo(value));
-//         }
-
-//         return result;
-//     }
-
-//     if (isJsonObject(json)) {
-//         const result: any = {};
-
-//         for (const [key, value] of json.entries()) {
-//             result[key] = toPojo(value);
-//         }
-
-//         return result;
-//     }
-
-//     return json;
-// }
-
-// export function jsonStringify(json: JsonValue, spacing?: number): string {
-//     return JSON.stringify(toPojo(json), null, spacing);
-// }
-
-// export function isJsonObject(value: any): value is JsonObject {
-//     return value && value[jsonObjectBrand];
-// }
-
-// export function isJsonArray(value: any): value is JsonArray {
-//     return value && value[jsonArrayBrand];
-// }
